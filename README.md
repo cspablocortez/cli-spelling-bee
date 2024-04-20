@@ -22,6 +22,10 @@ Score: 30
 To run the app:
 
 ```bash
+$ git clone https://github.com/cspablocortez/cli-spelling-bee.git
+```
+
+```bash
 $ bundle install
 ```
 
