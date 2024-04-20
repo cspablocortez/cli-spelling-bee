@@ -54,7 +54,6 @@ module SpellingBee
         end
       end
 
-      sleep(0.5)
       puts "Game progress saved."
     end
 
@@ -79,7 +78,7 @@ module SpellingBee
         @accepted_words.push(word)
         points = self.score_word(word)
         @score += points
-        print Rainbow("Nice! +(#{points})").green
+        print Rainbow("Nice! (+#{points})").green
       elsif @accepted_words.include?(word)
         print Rainbow("Already found!").yellow
       else
@@ -98,22 +97,22 @@ module SpellingBee
 
         case word 
           when ':EXIT'
-            puts 'Ending program...'
+            puts 'Quitting program...'
             self.save
             sleep(1)
             exit
           when ':E'
-            puts 'Ending program...'
+            puts 'Quitting program...'
             self.save
             sleep(1)
             exit
           when ':QUIT'
-            puts 'Ending program...'
+            puts 'Quitting program...'
             self.save
             sleep(1)
             exit
           when ':Q'
-            puts 'Ending program...'
+            puts 'Quitting program...'
             self.save
             sleep(1)
             exit
@@ -127,10 +126,12 @@ module SpellingBee
             self.save
             puts 'Saving progress...'
             sleep(1)
+            puts 'Saved.'
           when ':S'
             self.save
             puts 'Saving progress...'
             sleep(1)
+            puts 'Saved.'
           when ':LOAD'
             self.load
             puts 'Loading saved game...'
