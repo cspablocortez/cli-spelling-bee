@@ -1,5 +1,3 @@
-require 'rainbow'
-
 module SpellingBee
 
   class Puzzle 
