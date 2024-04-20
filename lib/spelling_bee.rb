@@ -28,9 +28,17 @@ module SpellingBee
     def initialize(puzzle)
       @puzzle = puzzle
       @accepted_words = Array.new
-      @solution_words = ['FOO', 'BAR']
-      @max_score = 10
+      @solution_words = Array.new
+      @max_score = 100
       @score = 0
+    end
+
+    def load_solutions(file_path)
+      if File.exist? (file_path)
+        @solution_words = File.readlines(file_path).map(&:chomp)
+      else
+        puts "File does not exist."
+      end
     end
 
     def prompt
@@ -44,6 +52,7 @@ module SpellingBee
       while (@score <= @max_score)
         system('clear')
         @puzzle.show
+        p @accepted_words
         word = self.prompt
         word.upcase!
 
