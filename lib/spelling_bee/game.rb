@@ -75,6 +75,14 @@ module SpellingBee
       end
     end
 
+    def quit
+      puts 'Quitting program...'
+      self.save
+      sleep(1)
+      system('clear')
+      exit
+    end
+
     def check_word(word)
       if @solution_words.include?(word) and not @accepted_words.include?(word)
         @accepted_words.push(word)
@@ -90,7 +98,7 @@ module SpellingBee
 
     def start
 
-      self.load if @score.zero?
+      self.load
 
       while (@score <= @max_score)
         @puzzle.show
@@ -99,25 +107,13 @@ module SpellingBee
 
         case word 
           when ':EXIT'
-            puts 'Quitting program...'
-            self.save
-            sleep(1)
-            exit
+            self.quit
           when ':E'
-            puts 'Quitting program...'
-            self.save
-            sleep(1)
-            exit
+            self.quit
           when ':QUIT'
-            puts 'Quitting program...'
-            self.save
-            sleep(1)
-            exit
+            self.quit
           when ':Q'
-            puts 'Quitting program...'
-            self.save
-            sleep(1)
-            exit
+            self.quit
           when ':SHUFFLE'
             @puzzle.shuffle_outer_words
           when ':SH'
