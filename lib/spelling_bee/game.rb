@@ -38,7 +38,7 @@ module SpellingBee
             puts 'Ending program...'
             exit
           when ':SHUFFLE'
-            puts 'Shuffling words...'
+            @puzzle.shuffle_outer_words
           else
             if @solution_words.include?(word) and not @accepted_words.include?(word)
               @accepted_words.push(word)

@@ -10,6 +10,10 @@ module SpellingBee
       @all_letters = all_letters.split("")
     end
 
+    def shuffle_outer_words
+      @outer_letters.shuffle!
+    end
+
     def show
       puts %(
       #{Rainbow(APP_NAME).yellow} 
