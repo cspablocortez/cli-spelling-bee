@@ -63,7 +63,7 @@ module SpellingBee
       file_name = Dir.entries(file_dir).last
       file_path = File.join(file_dir, file_name)
 
-      if File.exist? (file_path)
+      if File.exist? (file_path) and file_name.length > 2 # when nothing saved Dir.entries.last returns '..'
         File.foreach(file_path) do |line|
           word = line.chomp
           @accepted_words.push(word)
@@ -71,7 +71,6 @@ module SpellingBee
         end
       else
         puts "No saved progress yet."
-        sleep(1)
       end
     end
 
@@ -91,7 +90,7 @@ module SpellingBee
 
     def start
 
-      self.load # REMOVE WHEN DONE
+      self.load 
 
       while (@score <= @max_score)
         @puzzle.show
@@ -115,7 +114,7 @@ module SpellingBee
             self.check_word(word)
         end
 
-        sleep(0.5)
+        sleep(1)
       end
     end
     
