@@ -27,7 +27,7 @@ module SpellingBee
   class Game 
     def initialize(puzzle)
       @puzzle = puzzle
-      @words = Array.new
+      @accepted_words = Array.new
       @solution_words = ['FOO', 'BAR']
       @max_score = 10
       @score = 0
@@ -45,13 +45,16 @@ module SpellingBee
         system('clear')
         @puzzle.show
         word = self.prompt
+        word.upcase!
 
-        if @solution_words.include? word.upcase
-          @words.push(word)
+        if @solution_words.include?(word) and not @accepted_words.include?(word)
+          @accepted_words.push(word)
           @score += 5
-          puts "Nice! +5 points"
+          puts "\tNice! +5 points"
+        elsif @accepted_words.include?(word)
+          puts "\tAlready found!"
         else
-          puts "Not a word!"
+          puts "\tNot in word list!"
         end
 
         sleep(1)
