@@ -64,9 +64,6 @@ Score: 0
 
 ```
 
-Would result in the order of th
-
-
 | Command | Function         |
 |---------|------------------|
 | :exit   | This command stops all processes and safely exits the program. |
