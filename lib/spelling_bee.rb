@@ -1,3 +1,5 @@
+require 'rainbow'
+
 module SpellingBee
   APP_NAME = 'NYT Spelling Bee'
 
@@ -13,11 +15,11 @@ module SpellingBee
 
     def show
       puts %(
-      #{APP_NAME} 
+      #{Rainbow(APP_NAME).yellow} 
 
               #{@outer_letters[0]}
           #{@outer_letters[1]}       #{@outer_letters[2]}
-              #{@center_letter}
+              #{Rainbow(@center_letter).yellow}
           #{@outer_letters[5]}       #{@outer_letters[3]}
               #{@outer_letters[4]}
     )
@@ -52,6 +54,7 @@ module SpellingBee
       while (@score <= @max_score)
         system('clear')
         @puzzle.show
+        print "Found words: "
         p @accepted_words
         word = self.prompt
         word.upcase!
@@ -59,11 +62,11 @@ module SpellingBee
         if @solution_words.include?(word) and not @accepted_words.include?(word)
           @accepted_words.push(word)
           @score += 5
-          puts "\tNice! +5 points"
+          puts Rainbow("\tNice! +5 points").green
         elsif @accepted_words.include?(word)
-          puts "\tAlready found!"
+          puts Rainbow("\tAlready found!").gray
         else
-          puts "\tNot in word list!"
+          puts Rainbow("\tNot in word list!").red
         end
 
         sleep(1)
