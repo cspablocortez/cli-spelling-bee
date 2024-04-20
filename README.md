@@ -61,7 +61,6 @@ Found words: []
 Score: 0
 
 > :shuffle
-
 ```
 
 | Command | Function         |

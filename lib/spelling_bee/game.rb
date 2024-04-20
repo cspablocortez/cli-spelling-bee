@@ -26,6 +26,19 @@ module SpellingBee
       word = gets.chomp!
     end
 
+    def score_word(word)
+      case 
+        when word.length == 4
+          points = 4
+        when word.length > 4
+          points = 4 + (word.length % 4)
+        else
+          points = 0
+      end
+      points
+
+    end
+
     def start
       while (@score <= @max_score)
         system('clear')
@@ -42,8 +55,10 @@ module SpellingBee
           else
             if @solution_words.include?(word) and not @accepted_words.include?(word)
               @accepted_words.push(word)
-              @score += 5
-              print Rainbow("\tNice! +5 points").green
+              points = self.score_word(word)
+              puts "points: #{points}"
+              @score += points
+              print Rainbow("\tNice! +#{points} points").green
             elsif @accepted_words.include?(word)
               print Rainbow("\tAlready found!").yellow
             else
