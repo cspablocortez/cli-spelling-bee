@@ -2,21 +2,6 @@
 
 A command line interface [NYT Spelling Bee](https://www.nytimes.com/puzzles/spelling-bee) clone.
 
-```
-      CLI Spelling Bee 
-
-              G
-          I       K
-              W
-          R       N
-              O
-
-Found words: []
-Score: 0    
-
-> 
-```
-
 ## Commands
 
 To run a command, prepend a colon to the word at the prompt. For example: 
