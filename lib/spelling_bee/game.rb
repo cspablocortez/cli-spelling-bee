@@ -43,6 +43,35 @@ module SpellingBee
       points
     end
 
+    def save
+      # Create path
+
+      # Save to data dir
+
+      # Output 
+    end
+
+    def load
+      # Create path
+
+      # Save to data dir
+
+      # Output 
+    end
+
+    def check_word(word)
+      if @solution_words.include?(word) and not @accepted_words.include?(word)
+        @accepted_words.push(word)
+        points = self.score_word(word)
+        @score += points
+        print Rainbow("\tNice! +#{points} points").green
+      elsif @accepted_words.include?(word)
+        print Rainbow("\tAlready found!").yellow
+      else
+        print Rainbow("\tNot in word list!").red
+      end  
+    end
+
     def start
       while (@score <= @max_score)
         system('clear')
@@ -56,17 +85,15 @@ module SpellingBee
             exit
           when ':SHUFFLE'
             @puzzle.shuffle_outer_words
+          when ':SAVE'
+            puts 'Saving progress...'
+            self.save
+          when ':LOAD'
+            puts 'Loading saved game...'
+            sleep(0.5)
+            self.load
           else
-            if @solution_words.include?(word) and not @accepted_words.include?(word)
-              @accepted_words.push(word)
-              points = self.score_word(word)
-              @score += points
-              print Rainbow("\tNice! +#{points} points").green
-            elsif @accepted_words.include?(word)
-              print Rainbow("\tAlready found!").yellow
-            else
-              print Rainbow("\tNot in word list!").red
-            end  
+            self.check_word(word)
         end
 
         sleep(0.5)
