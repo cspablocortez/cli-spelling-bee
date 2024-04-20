@@ -11,11 +11,10 @@ A command line interface [NYT Spelling Bee](https://www.nytimes.com/puzzles/spel
           R       N
               O
     
-Found words: []
-Score: 0
+Found words: ["OWNING", "GROWING", "KNOWING", "WINK"]
+Score: 20
 
 > 
-
 ```
 
 ## Instructions
