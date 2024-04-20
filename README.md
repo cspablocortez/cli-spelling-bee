@@ -46,7 +46,7 @@ $ ruby app.rb
 
 ## Gameplay
 
-To run a command, prepend a colon to the words at the prompt. For example: 
+To run a command, prepend a colon to the word at the prompt. For example: 
 
 ```
       CLI Spelling Bee 
