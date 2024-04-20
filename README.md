@@ -11,8 +11,8 @@ A command line interface [NYT Spelling Bee](https://www.nytimes.com/puzzles/spel
           R       N
               O
     
-Found words: ["OWNING", "GROWING", "KNOWING", "WINK"]
-Score: 20
+Found words: ["WORKING", "GROW", "GROWING", "INGROWN", "KNOW"]
+Score: 30
 
 > 
 ```

@@ -32,12 +32,11 @@ module SpellingBee
 
     def score_word(word)
       if self.pangram?(word)
-        puts "#{word} is a pangram"
         points = 4 + (word.length % 4) + 7  
       elsif word.length > 4
-        points = 4 + (word.length % 4)
+        points = word.length
       elsif word.length == 4
-        points = 4
+        points = 1
       else
         points = 0
       end
