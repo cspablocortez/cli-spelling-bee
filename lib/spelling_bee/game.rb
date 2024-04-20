@@ -18,7 +18,7 @@ module SpellingBee
     end
 
     def prompt
-      print "Found words: "
+      print "Found words: "   # FW and Score could be its own function
       p @accepted_words
       puts "Score: #{@score}"
       puts 
@@ -59,8 +59,10 @@ module SpellingBee
 
     def load
       file_dir = "data/saved"
+      Dir.mkdir(file_dir) unless Dir.exist?(file_dir)
       file_name = Dir.entries(file_dir).last
       file_path = File.join(file_dir, file_name)
+
 
       if File.exist? (file_path) and file_name.length > 2 # when nothing saved Dir.entries.last returns '..'
         File.foreach(file_path) do |line|
@@ -78,7 +80,7 @@ module SpellingBee
         @accepted_words.push(word)
         points = self.score_word(word)
         @score += points
-        print Rainbow("Nice! (+#{points})").green
+        print Rainbow("(+#{points}) Nice!").green
       elsif @accepted_words.include?(word)
         print Rainbow("Already found!").yellow
       else
@@ -88,7 +90,7 @@ module SpellingBee
 
     def start
 
-      self.load 
+      self.load if @score.zero?
 
       while (@score <= @max_score)
         @puzzle.show
