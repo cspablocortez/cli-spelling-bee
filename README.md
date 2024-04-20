@@ -44,7 +44,7 @@ $ ruby app.rb
 
 [Source](https://www.nytimes.com/puzzles/spelling-bee)
 
-## Gameplay
+## Commands
 
 To run a command, prepend a colon to the word at the prompt. For example: 
 
