@@ -70,6 +70,6 @@ Score: 0
 | Command | Function         |
 |---------|------------------|
 | :exit or :quit or :e or :q  | Stops all processes and safely exits the program. |
-| :shuffle or :s or ; | Shuffles outer letters. |
+| :shuffle or :sh or ; | Shuffles outer letters. |
 | :save or :s  | Saves current game progress. |
 | :hide or :h  | Hides list of found words. |
