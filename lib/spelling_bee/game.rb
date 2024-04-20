@@ -44,11 +44,18 @@ module SpellingBee
     end
 
     def save
-      # Create path
+      t = Time.now
+      date = t.strftime('%Y_%m_%d')
+      file_path = "data/saved/#{date}"
 
-      # Save to data dir
+      File.open(file_path, 'w') do |file|
+        @accepted_words.each do |word|
+          file.puts(word)
+        end
+      end
 
-      # Output 
+      sleep(0.5)
+      puts "Done!"
     end
 
     def load
@@ -60,6 +67,7 @@ module SpellingBee
     end
 
     def check_word(word)
+      puts "Checking #{word}"
       if @solution_words.include?(word) and not @accepted_words.include?(word)
         @accepted_words.push(word)
         points = self.score_word(word)
@@ -90,7 +98,6 @@ module SpellingBee
             self.save
           when ':LOAD'
             puts 'Loading saved game...'
-            sleep(0.5)
             self.load
           else
             self.check_word(word)
