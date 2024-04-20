@@ -1,6 +1,22 @@
 # CLI Spelling Bee
 
-A [NYT Spelling Bee](https://www.nytimes.com/puzzles/spelling-bee) clone.
+A command line interface [NYT Spelling Bee](https://www.nytimes.com/puzzles/spelling-bee) clone.
+
+```
+      CLI Spelling Bee 
+
+              G
+          I       K
+              W
+          R       N
+              O
+    
+Found words: []
+Score: 0
+
+> 
+
+```
 
 ## Instructions
 
@@ -31,12 +47,28 @@ $ ruby app.rb
 
 ## Gameplay
 
-To run a command, prepend a colon to the words at the prompt:
+To run a command, prepend a colon to the words at the prompt. For example: 
 
-`> :shuffle`
+```
+      CLI Spelling Bee 
+
+              G
+          I       K
+              W
+          R       N
+              O
+    
+Found words: []
+Score: 0
+
+> :shuffle
+
+```
+
+Would result in the order of th
+
 
 | Command | Function         |
 |---------|------------------|
 | :exit   | This command stops all processes and safely exits the program. |
 | :shuffle| Shuffle the order of the outer letters. |
-
