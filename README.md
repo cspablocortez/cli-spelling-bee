@@ -72,4 +72,4 @@ Score: 0
 | :exit or :quit or :e or :q  | Stops all processes and safely exits the program. |
 | :shuffle or :s or ; | Shuffles outer letters. |
 | :save or :s  | Saves current game progress. |
-| :hide or :h  | Hides the list of found words. |
+| :hide or :h  | Hides list of found words. |
