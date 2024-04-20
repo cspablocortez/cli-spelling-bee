@@ -23,4 +23,40 @@ module SpellingBee
     )
     end
   end
+
+  class Game 
+    def initialize(puzzle)
+      @puzzle = puzzle
+      @words = Array.new
+      @solution_words = ['FOO', 'BAR']
+      @max_score = 10
+      @score = 0
+    end
+
+    def prompt
+      puts "Score: #{@score}"
+      print '> '
+      word = gets.chomp!
+    end
+
+    def start
+      
+      while (@score <= @max_score)
+        system('clear')
+        @puzzle.show
+        word = self.prompt
+
+        if @solution_words.include? word.upcase
+          @words.push(word)
+          @score += 5
+          puts "Nice! +5 points"
+        else
+          puts "Not a word!"
+        end
+
+        sleep(1)
+      end
+
+    end
+  end
 end

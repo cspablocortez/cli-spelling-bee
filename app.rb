@@ -1,4 +1,5 @@
-require_relative "lib/spelling_bee"
+require_relative 'lib/spelling_bee'
 
 puzzle = SpellingBee::Puzzle.new('A', 'BCDEFG')
-puzzle.show
+game = SpellingBee::Game.new(puzzle)
+game.start
