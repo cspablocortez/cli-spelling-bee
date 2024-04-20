@@ -55,15 +55,24 @@ module SpellingBee
       end
 
       sleep(0.5)
-      puts "Done!"
+      puts "Game progress saved."
     end
 
     def load
-      # Create path
+      file_dir = "data/saved"
+      file_name = Dir.entries(file_dir).last
+      file_path = File.join(file_dir, file_name)
 
-      # Save to data dir
-
-      # Output 
+      if File.exist? (file_path)
+        File.foreach(file_path) do |line|
+          word = line.chomp
+          @accepted_words.push(word)
+          @score += self.score_word(word) 
+        end
+      else
+        puts "No saved progress yet."
+        sleep(1)
+      end
     end
 
     def check_word(word)
@@ -81,8 +90,10 @@ module SpellingBee
     end
 
     def start
+
+      self.load # REMOVE WHEN DONE
+
       while (@score <= @max_score)
-        system('clear')
         @puzzle.show
         word = self.prompt
         word.upcase!
@@ -90,6 +101,7 @@ module SpellingBee
         case word 
           when ':EXIT'
             puts 'Ending program...'
+            self.save
             exit
           when ':SHUFFLE'
             @puzzle.shuffle_outer_words

@@ -15,6 +15,7 @@ module SpellingBee
     end
 
     def show
+      system('clear')
       puts %(
       #{Rainbow(APP_NAME).yellow} 
 
