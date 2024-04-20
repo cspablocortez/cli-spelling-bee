@@ -70,6 +70,5 @@ Score: 0
 | Command | Function         |
 |---------|------------------|
 | :exit   | Stops all processes and safely exits the program. |
-| :shuffle| Shuffles outer letters. |
-| :save   | Saves current game progress. |
-| :load   | Loads game progress. |
+| :shuffle or :s or ; | Shuffles outer letters. |
+| :save or :s  | Saves current game progress. |

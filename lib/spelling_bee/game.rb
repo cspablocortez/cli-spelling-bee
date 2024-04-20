@@ -5,7 +5,7 @@ module SpellingBee
       @puzzle = puzzle
       @accepted_words = Array.new
       @solution_words = Array.new
-      @max_score = 100
+      @max_score = 10000
       @score = 0
     end
 
@@ -75,16 +75,15 @@ module SpellingBee
     end
 
     def check_word(word)
-      puts "Checking #{word}"
       if @solution_words.include?(word) and not @accepted_words.include?(word)
         @accepted_words.push(word)
         points = self.score_word(word)
         @score += points
-        print Rainbow("\tNice! +#{points} points").green
+        print Rainbow("Nice! +#{points} points").green
       elsif @accepted_words.include?(word)
-        print Rainbow("\tAlready found!").yellow
+        print Rainbow("Already found!").yellow
       else
-        print Rainbow("\tNot in word list!").red
+        print Rainbow("Not in word list!").red
       end  
     end
 
@@ -101,20 +100,30 @@ module SpellingBee
           when ':EXIT'
             puts 'Ending program...'
             self.save
+            sleep(1)
             exit
           when ':SHUFFLE'
             @puzzle.shuffle_outer_words
+          when 'S'
+            @puzzle.shuffle_outer_words
+          when ';'
+            @puzzle.shuffle_outer_words
           when ':SAVE'
-            puts 'Saving progress...'
             self.save
+            puts 'Saving progress...'
+            sleep(1)
+          when ':S'
+            self.save
+            puts 'Saving progress...'
+            sleep(1)
           when ':LOAD'
-            puts 'Loading saved game...'
             self.load
+            puts 'Loading saved game...'
+            sleep(1)
           else
             self.check_word(word)
+            sleep(1)
         end
-
-        sleep(1)
       end
     end
     
