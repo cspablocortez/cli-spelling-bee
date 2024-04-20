@@ -79,12 +79,12 @@ module SpellingBee
         @accepted_words.push(word)
         points = self.score_word(word)
         @score += points
-        print Rainbow("Nice! +#{points} points").green
+        print Rainbow("Nice! +(#{points})").green
       elsif @accepted_words.include?(word)
         print Rainbow("Already found!").yellow
       else
         print Rainbow("Not in word list!").red
-      end  
+      end
     end
 
     def start
@@ -102,9 +102,24 @@ module SpellingBee
             self.save
             sleep(1)
             exit
+          when ':E'
+            puts 'Ending program...'
+            self.save
+            sleep(1)
+            exit
+          when ':QUIT'
+            puts 'Ending program...'
+            self.save
+            sleep(1)
+            exit
+          when ':Q'
+            puts 'Ending program...'
+            self.save
+            sleep(1)
+            exit
           when ':SHUFFLE'
             @puzzle.shuffle_outer_words
-          when 'S'
+          when ':SH'
             @puzzle.shuffle_outer_words
           when ';'
             @puzzle.shuffle_outer_words
@@ -122,7 +137,7 @@ module SpellingBee
             sleep(1)
           else
             self.check_word(word)
-            sleep(1)
+            sleep(0.5)
         end
       end
     end
