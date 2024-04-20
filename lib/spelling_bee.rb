@@ -1,7 +1,7 @@
 require 'rainbow'
 
 module SpellingBee
-  APP_NAME = 'NYT Spelling Bee'
+  APP_NAME = 'CLI Spelling Bee'
 
   class Puzzle 
     attr_reader :center_letter, :outer_letters, :all_letters
@@ -68,8 +68,9 @@ module SpellingBee
         else
           puts Rainbow("\tNot in word list!").red
         end
+      
 
-        sleep(1)
+        sleep(0.5)
       end
 
     end
