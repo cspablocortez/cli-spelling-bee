@@ -7,11 +7,11 @@ A [NYT Spelling Bee](https://www.nytimes.com/puzzles/spelling-bee) clone.
 To run the app:
 
 ```bash
-bundle install
+$ bundle install
 ```
 
 ```bash
-ruby app.rb
+$ ruby app.rb
 ```
 
 ## How to Play Spelling Bee
@@ -29,7 +29,11 @@ ruby app.rb
 
 [Source](https://www.nytimes.com/puzzles/spelling-bee)
 
-To run commands, prepend a colon to the words:
+## Gameplay
+
+To run a command, prepend a colon to the words at the prompt:
+
+`> :shuffle`
 
 | Command | Function         |
 |---------|------------------|
