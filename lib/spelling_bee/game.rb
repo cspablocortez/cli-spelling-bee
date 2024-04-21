@@ -43,10 +43,14 @@ module SpellingBee
       points
     end
 
+    def new
+      # TODO
+    end
+
     def save
       t = Time.now
       date = t.strftime('%Y_%m_%d')
-      file_path = "data/saved/#{date}"
+      file_path = "data/saved/#{date}_progress"
 
       File.open(file_path, 'w') do |file|
         @accepted_words.each do |word|
@@ -106,6 +110,8 @@ module SpellingBee
         word.upcase!
 
         case word 
+        when ':NEW'
+            self.new
           when ':EXIT'
             self.quit
           when ':E'
