@@ -14,6 +14,14 @@ module SpellingBee
       @outer_letters.shuffle!
     end
 
+    def to_json(*options)
+      {
+        'center_letter' => @center_letter,
+        'outer_letters' => @outer_letters,
+        'all_letters' => @all_letters
+      }.to_json(*options)
+    end
+
     def show
       system('clear')
       puts %(

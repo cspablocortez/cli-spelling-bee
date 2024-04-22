@@ -3,10 +3,20 @@ module SpellingBee
   class Game 
     def initialize(puzzle)
       @puzzle = puzzle
-      @accepted_words = Array.new
+      @found_words = Array.new
       @solution_words = Array.new
       @max_score = 10000
       @score = 0
+    end
+
+    def to_json(*options)
+      {
+        'saved_at' => Time.now,
+        'puzzle' => @puzzle,
+        'score' => @score,
+        'found_words' => @found_words
+      }
+      .to_json(*options)
     end
 
     def load_solutions(file_path)
@@ -19,7 +29,7 @@ module SpellingBee
 
     def prompt
       print "Found words: "   # FW and Score could be its own function
-      p @accepted_words
+      p @found_words
       puts "Score: #{@score}"
       puts 
       print '> '
@@ -49,31 +59,58 @@ module SpellingBee
 
     def save
       t = Time.now
-      date = t.strftime('%Y_%m_%d')
-      file_path = "data/saved/#{date}_progress"
+      date = t.strftime('%Y-%m-%d')
+      file_path = "data/saved/archive/#{date}.json"
 
       File.open(file_path, 'w') do |file|
-        @accepted_words.each do |word|
-          file.puts(word)
-        end
+        file.puts(self.to_json)
       end
 
-      puts "Game progress saved."
+      puts "Game progress saved to archive."
+
     end
 
-    def load
-      file_dir = "data/saved"
-      Dir.mkdir(file_dir) unless Dir.exist?(file_dir)
+    def show_archived_games(files)
+      files.each_with_index do |file, index|
+        puts "[#{index}] #{file}"
+      end
+    end
+
+    def select_load_file
+      directory_path = 'data/saved/archive'
+      player_save_files = Dir.entries(directory_path).select { |file| File.file?(File.join(directory_path, file)) }
+      
+      if player_save_files.empty?
+        puts "No saved games yet!"
+      else
+        puts "Select a file: "
+        self.show_archived_games(player_save_files)
+        print ">> "
+        user_selection = gets.chomp!
+        selected_file = player_save_files[user_selection.to_i]
+        
+        json_string = File.read(File.join(directory_path, selected_file))
+        game_data = JSON.parse(json_string)
+        self.load_game(game_data)
+      end
+
+    end
+
+    def load_game(data)           
+      @found_words = data['found_words']
+      @score = data['score']
+    end
+
+    def load_latest
+      file_dir = "data/saved/archive"
       file_name = Dir.entries(file_dir).last
       file_path = File.join(file_dir, file_name)
 
 
-      if File.exist? (file_path) and file_name.length > 2 # when nothing saved Dir.entries.last returns '..'
-        File.foreach(file_path) do |line|
-          word = line.chomp
-          @accepted_words.push(word)
-          @score += self.score_word(word) 
-        end
+      if File.exist? (file_path)
+        json_string = File.read(file_path)
+        game_data = JSON.parse(json_string)
+        self.load_game(game_data)
       else
         puts "No saved progress yet."
       end
@@ -88,12 +125,12 @@ module SpellingBee
     end
 
     def check_word(word)
-      if @solution_words.include?(word) and not @accepted_words.include?(word)
-        @accepted_words.push(word)
+      if @solution_words.include?(word) and not @found_words.include?(word)
+        @found_words.push(word)
         points = self.score_word(word)
         @score += points
         print Rainbow("(+#{points}) Nice!").green
-      elsif @accepted_words.include?(word)
+      elsif @found_words.include?(word)
         print Rainbow("Already found!").yellow
       else
         print Rainbow("Not in word list!").red
@@ -101,8 +138,6 @@ module SpellingBee
     end
 
     def start
-
-      self.load
 
       while (@score <= @max_score)
         @puzzle.show
@@ -137,8 +172,8 @@ module SpellingBee
             sleep(1)
             puts 'Saved.'
           when ':LOAD'
-            self.load
-            puts 'Loading saved game...'
+            self.select_load_file
+            puts 'Development feature...'
             sleep(1)
           else
             self.check_word(word)

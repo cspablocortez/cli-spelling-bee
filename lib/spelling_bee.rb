@@ -1,4 +1,5 @@
 require 'rainbow'
+require 'json'
 require_relative 'spelling_bee/puzzle'
 require_relative 'spelling_bee/game'
 
